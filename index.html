@@ -57,6 +57,13 @@
                     <h2 class="products__title">
                         Check also
                     </h2>
+                    <ul class="products__list">
+                        <li class="products__item">Accessories</li>
+                        <li class="products__item">Chargers adapters</li>
+                        <li class="products__item">Iphone`s</li>
+                        <li class="products__item">Watches</li>
+                        <li class="products__item products__item_active">All</li>
+                    </ul>
                     <p class="products__see">
                        <span class="products__see-text">See All</span> 
                         <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -106,6 +113,27 @@
             <input required name="price" type="number" class="form__input" placeholder="Product price">
             <input required name="memory" type="number" class="form__input" placeholder="Product memory">
             <input required name="image" type="text" class="form__input" placeholder="Product image">
+            <select class="form__input"  name="category" >
+                <option value="Accessories">Accessories</option>
+                <option value="Chargers adapters">Chargers adapters</option>
+                <option value="Iphone`s">Iphone`s</option>
+                <option value="Watches">Watches</option>
+            </select>
+            <button class="products__card-btn" type="submit">Add</button>
+        </form>
+
+        <form class="form form-change">
+            <div class="form__close form-change__close">X</div>
+            <input required name="title" type="text" class="form__input" placeholder="Product name">
+            <input required name="price" type="number" class="form__input" placeholder="Product price">
+            <input required name="memory" type="number" class="form__input" placeholder="Product memory">
+            <input required name="image" type="text" class="form__input" placeholder="Product image">
+            <select class="form__input" name="category" >
+                <option value="Accessories">Accessories</option>
+                <option value="Chargers adapters">Chargers adapters</option>
+                <option value="Iphone`s">Iphone`s</option>
+                <option value="Watches">Watches</option>
+            </select>
             <button class="products__card-btn" type="submit">Add</button>
         </form>
     </div>

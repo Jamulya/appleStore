@@ -1,4 +1,4 @@
-let url = 'http://localhost:3000/products'
+let url = 'http://localhost:3000/products?'
 
 let overlay = document.querySelector('.overlay')
 let addBtn = document.querySelector('.add-btn')
@@ -6,7 +6,8 @@ let formClose = document.querySelector('.form__close')
 let productsRow = document.querySelector('.products__row')
 let form = document.querySelector('.form')
 let seeAll = document.querySelector('.products__see')
-
+let formChange = document.querySelector('.form-change')
+let productsItem = document.querySelectorAll('.products__item')
 
 
 
@@ -24,16 +25,21 @@ formClose.addEventListener('click', function () {
 overlay.addEventListener('click', function (e) {
     if (e.target.className.includes('overlay')) {
         overlay.style.display = 'none'
-        form.style.display = 'node'
+        form.style.display = 'none'
 
     }
 })
 
+let all = ''
+let status = 'All'
+
+
+
 
 //products__row
-const getProducts = (all) => {
+const getProducts = () => {
     productsRow.innerHTML = ''
-    fetch(url + `${all ? '' : '?_limit=4' }`)
+    fetch(url + `${all.length ? '' : '_limit=4&'}${status === 'All' ? '' : 'category=' + status}`)
     .then((res) => res.json())
     .then((res) =>{
         res.forEach((item) => {
@@ -50,7 +56,7 @@ const getProducts = (all) => {
                 <button class="products__card-btn">
                     Buy
                 </button>
-                <button class="products__card-btn">
+                <button data-id = "${item.id}"  class="products__card-btn products__card-change">
                     Change
                 </button>
                 <button data-id = "${item.id}" type = 'button' class="products__card-btn products__card-delete">
@@ -76,6 +82,62 @@ const getProducts = (all) => {
         })
 
 
+    let changeBtn = document.querySelectorAll('.products__card-change')
+        Array.from(changeBtn).forEach((change) => {
+            change.addEventListener('click', function() {
+                overlay.style.display = 'block'
+                formChange.style.display = 'flex'
+                fetch(`http://localhost:3000/products/${change.dataset.id}`)
+                .then((res) => res.json())
+                .then((res) => {
+                    formChange[0].value = res.title
+                    formChange[1].value = res.price
+                    formChange[2].value = res.memory
+                    formChange[3].value = res.image
+                    formChange[4].value = res.category
+                })
+                formChange.addEventListener('submit', (e) => {
+                    let product = {
+                        title: e.target[0].value,
+                        price: e.target[1].value,
+                        memory: e.target[2].value,
+                        image: e.target[3].value,
+                        category: e.target[4].value
+                    }
+                    fetch(`http://localhost:3000/products/${change.dataset.id}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(product)
+                    }).then((res) => {
+                        // e.target[0].value = ''
+                        // e.target[1].value = ''
+                        // e.target[2].value = ''
+                        // e.target[3].value = ''
+                        // e.target[4].value = ''
+                        // overlay.style.display = 'none'
+                        // getProducts(e)
+                    })
+                })
+                // fetch(`http://localhost:3000/products/${change.dataset.id}`, {
+                //     method: 'PATCH',
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     },
+                //     body: JSON.stringify(product)
+                // }).then((res) => {
+                //     e.target[0].value = ''
+                //     e.target[1].value = ''
+                //     e.target[2].value = ''
+                //     e.target[3].value = ''
+                //     e.target[4].value = ''
+                //     overlay.style.display = 'none'
+                //     getProducts(e)
+                // }).catch(() => alert('Ошибка при добавлении'))
+            })
+        })
+
     } ).catch((err) => alert(err))
 
 }
@@ -91,7 +153,8 @@ form.addEventListener('submit', (e) => {
         title: e.target[0].value,
         price: e.target[1].value,
         memory: e.target[2].value,
-        image: e.target[3].value
+        image: e.target[3].value,
+        category: e.target[4].value
     }
 
     fetch(url, {
@@ -105,8 +168,8 @@ form.addEventListener('submit', (e) => {
         e.target[1].value = ''
         e.target[2].value = ''
         e.target[3].value = ''
+        e.target[4].value = ''
         overlay.style.display = 'none'
-
         getProducts()
     })
     .catch(() => alert('Ошибка при добавлении'))
@@ -117,12 +180,35 @@ seeAll.addEventListener('click', () => {
     // console.log(seeAll.children);
     // seeAll.children[0].textContent = 'Hide All'
     if(seeAll.children[0].textContent === 'See All'){
-        getProducts('all')
+        // getProducts('all')
+        all = 'all'
+        getProducts()
+
         seeAll.children[0].textContent ='Hide All'
     }else{
         seeAll.children[0].textContent = 'See All'
+        all = ''
         getProducts()
     }
+})
+
+
+Array.from(productsItem).forEach((item) => {
+    item.addEventListener('click', () => {
+        // item.classList.add('products__item_active')
+        // status =item.textContent
+        // console.log(status);
+
+        Array.from(productsItem).forEach((el) => {
+            if(el.textContent === item.textContent){
+                el.classList.add('products__item_active')
+            }else {
+                el.classList.remove('products__item_active')
+            }
+        })
+        status = item.textContent
+        getProducts()
+    })
 })
 
 

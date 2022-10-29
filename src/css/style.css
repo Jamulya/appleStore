@@ -147,6 +147,23 @@ body {
     column-gap: 10px;
 }
 
+.products__list{
+    display: flex;
+    column-gap: 20px;
+}
+
+.products__item{
+    cursor: pointer;
+    transition: 0.2s;
+}
+.products__item:hover{
+    transition: 0.2s;
+    color: #1890FF;
+}
+.products__item.products__item_active{
+    color: #1890FF;
+}
+
 .footer__nav {
     padding: 30px 0 40px 67px;
     background: #FFFFFF;
