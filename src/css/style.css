@@ -226,6 +226,106 @@ body {
     background-color: #00000080;
 }
 
+.basket{
+    display: none;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    max-width: 500px;
+    background-color: #fff;
+    height: 100vh;
+    padding: 91px 30px 30px 30px;
+}
+
+.basket__title{
+    position: absolute;
+    top: 32px;
+    left: 30px;
+}
+
+.basket__content{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.basket__card-left{
+    display: flex;
+    column-gap: 20px;
+}
+
+.basket__row{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    max-height: 480px;
+    overflow-y: auto;
+}
+
+.basket__end-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+.basket__card{
+    display: flex;
+    column-gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+}
+.basket__card-title{
+    font-family: 'Inter',sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: #000000
+}
+
+.basket__card-price{
+    font-family: 'Inter',sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    margin: 8px 0;
+}
+
+.basket__card-img{
+    width: 100px;
+    height: 90px;
+}
+.basket__card-btn{
+    padding: 8px 12px;
+    cursor: pointer;
+}
+.basket__card-minus, .basket__card-plus{
+    padding: 5px 8px;
+}
+
+.basket__end-btn{
+    display: flex;
+    margin: 0 auto;
+    padding: 20px 42px;
+    border: none;
+    border-radius: 5px;
+    transition: .3s ease-out;
+
+}
+
+.basket__end-btn:hover{
+    background-color: #000000;
+    transition: .3s ease-out;
+    color: #fff;
+}
+
+
 .form {
     max-width: 400px;
     background-color: #FFFFFF;

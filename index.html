@@ -43,6 +43,14 @@
                 <li class="header__item">
                     Connect
                 </li>
+
+                <li class="header__item header__item_cart">
+                    <svg width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.4167 5.5H13.5833C13.5833 2.93333 11.5667 0.916666 9 0.916666C6.43333 0.916666 4.41667 2.93333 4.41667 5.5H2.58333C1.575 5.5 0.75 6.325 0.75 7.33333V18.3333C0.75 19.3417 1.575 20.1667 2.58333 20.1667H15.4167C16.425 20.1667 17.25 19.3417 17.25 18.3333V7.33333C17.25 6.325 16.425 5.5 15.4167 5.5ZM9 2.75C10.5583 2.75 11.75 3.94167 11.75 5.5H6.25C6.25 3.94167 7.44167 2.75 9 2.75ZM15.4167 18.3333H2.58333V7.33333H15.4167V18.3333ZM9 11C7.44167 11 6.25 9.80833 6.25 8.25H4.41667C4.41667 10.8167 6.43333 12.8333 9 12.8333C11.5667 12.8333 13.5833 10.8167 13.5833 8.25H11.75C11.75 9.80833 10.5583 11 9 11Z" fill="#D6D1CA"/>
+                    </svg>
+                    <sup class="header__list-cart"></sup>
+                    <span class="header__list-price"></span>
+                </li>
             </ul>
 
         </nav>
@@ -136,6 +144,37 @@
             </select>
             <button class="products__card-btn" type="submit">Add</button>
         </form>
+
+
+        <div class="basket">
+            <h2 class="basket__title">Корзина</h2>
+            <div class="basket__content">
+                <div class="basket__row">
+                    <!-- <div class="basket__card">
+                        <img class="basket__card-img" src="/src/images/card1.jpg" alt="">
+                    <div class="basket__card-center">
+                        <h2 class="basket__card-title">women shoes</h2>
+                        <p class="basket__card-price">4500 сом</p>
+                        <div>
+                            <button class="basket__card-plus">+</button><span>3</span><button class="basket__card-minus">-</button>
+                        </div>
+                    </div>
+                    <button class="basket__card-btn">X</button>
+                    </div> -->
+                </div>
+                <div class="basket__end">
+                    <div class="basket__end-row">
+                        <h3 class="basket__end-title">Итого</h3>
+                        <span class="basket__end-value total"></span>
+                    </div>
+                    <div class="basket__end-row">
+                        <h3 class="basket__end-title">Налог 5%: </h3>
+                        <span class="basket__end-value sale"></span>
+                    </div>
+                    <button class="basket__end-btn">Оформить заказ</button>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 
